@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Song Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+    <ion-grid>          
+      <ion-row>    
+        <ion-col>
+          <div class="ion-text-start">
+            <h3>Titulo: {{song.title}}</h3>
+            Artista: {{song.artist.name}}
+          </div>
+        </ion-col>
+      </ion-row>
+     
+      <ion-img width="50" height="50" src={{song.album.cover_medium}}></ion-img>
+      <ion-row>
+        <ion-col>
+          <div class="ion-text-start"> 
+            Duration: {{(song.duration/60).toString() | slice:0:1}}:{{(song.duration/60).toString() | slice:2:4}}
+          </div>
+        </ion-col> 
+      </ion-row> 
+      
+
+
+  </ion-grid>
+</ion-content>

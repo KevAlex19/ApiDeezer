@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-
+import {DeezzerServiceService} from '../services/deezzer-service.service';
+import { NavController } from '@ionic/angular';
+import { SendSongService } from '../services/send-song.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -7,6 +9,25 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  details="DetailsPage";
+  constructor(public deezer: DeezzerServiceService, private navCtrl: NavController,public songService: SendSongService) {
+    
+  }
+  songs;
+  playlist;
+  ngOnInit(){
+    this.deezer.GetSongs()
+    .subscribe(
+      (values)=>{
+        this.playlist=values;
+        this.songs = this.playlist.tracks.data;
+      },
+      )
+        
+  }
+  detailsPage(song){
+    this.songService.sendObjectSource(song);
+    this.navCtrl.navigateForward('/details/songs')
+  }
 
 }
